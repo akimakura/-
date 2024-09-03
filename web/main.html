@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вычитание длинных чисел</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+            margin: 0;
+        }
+        .description {
+            margin-top: 20px;
+        }
+        .calculator {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        .calculator h2 {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            color: #8a8a8a;
+        }
+        .calculator .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .calculator .row label {
+            width: 150px;
+            font-size: 16px;
+            text-align: left;
+            margin-right: 10px;
+            color: #8a8a8a;
+        }
+        .calculator .row input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: -webkit-right;
+        }
+        .calculator .operator {
+            text-align: right;
+            font-size: 24px;
+            margin: 5px;
+        }
+        .calculator .result {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 16px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="calculator">
+            <h2>Вычитание длинных чисел</h2>
+            <div class="row">
+                <label for="one-number">Первое число</label>
+                <input type="text" id="one-number" oninput="calculate()">
+            </div>
+
+            <div class="operator">-</div>
+
+            <div class="row">
+                <label for="two-number">Второе число</label>
+                <input type="text" id="two-number" oninput="calculate()">
+            </div>
+
+            <div class="operator">=</div>
+
+            <div class="row">
+                <label>Результат</label>
+                <div id="result" class="result">...</div>
+            </div>
+        </div>
+        <div class="description calculator">
+            <h2>Запрещено вводить: отрицательные числа, символы не являющеися цифрами, числа длинной более 256 символов</h2>
+            <h2>Введите число в первое поле, далее введите число во второе поле, вычитание будет произведено автоматически</h2>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // Вызов Python и отображения результата
+        async function calculate() {
+            let oneNumber = document.getElementById('one-number').value;
+            let twoNumber = document.getElementById('two-number').value;
+
+            // Подсчет при заполнении обоих полей
+            if (oneNumber && twoNumber) {
+                let result = await eel.minus(oneNumber, twoNumber)();
+                // Вывод результата
+                document.getElementById('result').innerText = result;
+            }
+        }
+    </script>
+    <script type="text/javascript" src="/eel.js"></script>
+</body>
+</html>
