@@ -10,22 +10,22 @@ def minus(one_number: str, two_number: str) -> str:
         if len(one_number) >= 256 or len(two_number) >= 256:
             raise ValueError("Число превышает 256 символов.")
 
-        # Находим большее число для правильности рассчета
+        # Находим большее число для правильности расчета
         max_len = max(len(one_number), len(two_number))
 
-        # Добавляем нули в недотсающих местах, в случаях, когда одно число длиннее первого
+        # Добавляем нули в недостающих местах, в случаях, когда одно число длиннее первого
         one_number = one_number.zfill(max_len)
         two_number = two_number.zfill(max_len)
 
         negativity = False
 
-        # Ищем наименьшее число для вычетания из большого меньшее
+        # Ищем наименьшее число для вычитания из большого меньшее
         if one_number < two_number:
             one_number, two_number = two_number, one_number
             negativity = True
 
         result = []
-        ten = 0  # Для взятия следуещего десятка при рассчете
+        ten = 0  # Для взятия следующего десятка при расчете
 
         for i in range(max_len - 1, -1, -1):
             one_iter = int(one_number[i])
